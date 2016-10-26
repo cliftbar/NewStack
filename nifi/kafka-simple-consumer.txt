@@ -1,0 +1,1 @@
+./kafka-simple-consumer-shell.sh --broker-list localhost:9092 --topic test --partition 0

@@ -1,0 +1,23 @@
+ version: '2'
+ services:
+    nifi:
+        image: nifi
+        hostname: nifi
+        ports:
+        - "8073:8080"
+        - "8074:8081"
+        volumes:
+        - ./nifi:/nifi
+    kafka:
+      image: spotify/kafka
+      hostname: kafka
+      environment:
+        - KAFKA=localhost:9092
+        - ZOOKEEPER=localhost:2181
+      expose:
+        - "2181"
+        - "9092"
+      ports:
+        - 2181:2181
+        - 9092:9092
+

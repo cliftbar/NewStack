@@ -1,0 +1,19 @@
+ version: '2'
+ services:
+    kafka:
+      image: spotify/kafka
+      #command: kafka-console-producer.sh --broker-list $KAFKA --topic test
+      hostname: kafka
+      environment:
+        - KAFKA=localhost:9092
+        - ZOOKEEPER=localhost:2181
+      expose:
+        - "2181"
+        - "9092"
+      ports:
+        - 2181:2181
+        - 9092:9092
+      #volumes:
+ 
+
+
