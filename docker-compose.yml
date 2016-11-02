@@ -1,7 +1,7 @@
  version: '2'
  services:
     nifi:
-        image: nifi
+        image: mkobit/nifi
         ports:
         - "8073:8080"
         - "8074:8081"
@@ -9,9 +9,11 @@
         - ./nifi:/nifi
     cassandra:
         image: cassandra
+        hostname: cassandra
         ports:
         - "7000:7000"
-
+        volumes:
+        - ./cassandra:/cassandra
     master:
       image: gettyimages/spark
       command: bin/spark-class org.apache.spark.deploy.master.Master -h master
@@ -90,7 +92,7 @@
         - ./spark/data:/tmp/data
     kafka:
       image: spotify/kafka
-      command: ./opt/kafka_2.11-0.8.2.1/bin/kafka-topics.sh --create --zookeeper $ZOOKEEPER --topic test --partitions 1 --replication-factor 1
+      # command: ./opt/kafka_2.11-0.8.2.1/bin/kafka-topics.sh --create --zookeeper $ZOOKEEPER --topic test --partitions 1 --replication-factor 1
       hostname: kafka
       environment:
         - KAFKA=localhost:9092
@@ -101,4 +103,6 @@
       ports:
         - 2181:2181
         - 9092:9092
+      volumes:
+      - ./kafka:/kafka
 

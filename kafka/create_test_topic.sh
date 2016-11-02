@@ -1,0 +1,1 @@
+./opt/kafka_2.11-0.8.2.1/bin/kafka-topics.sh --create --zookeeper $ZOOKEEPER --topic test --partitions 1 --replication-factor 1
