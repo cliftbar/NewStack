@@ -1,4 +1,4 @@
-catalog_number	name	basin	timestamp	lat_y	lon_x	max_wind_kts	min_cp_mb	sequence	fspeed_kts	is_landfall_point	rmax_nmi	gwaf
+catalog_number	name	basin	storm_timestamp	lat_y	lon_x	max_wind_kts	min_cp_mb	sequence	fspeed_kts	is_landfall_point	rmax_nmi	gwaf
 	MATTHEW		2016-09-28-12-00	13.4	-60.7	50.0	1008.0	0	3.343986600877574	0	15	0.9
 	MATTHEW		2016-09-28-13-00	13.466666666666667	-60.91666666666667	50.0	1008.0	1	3.343986600877574	0	15	0.9
 	MATTHEW		2016-09-28-14-00	13.533333333333333	-61.13333333333334	50.0	1008.0	2	3.343986600877574	0	15	0.9
