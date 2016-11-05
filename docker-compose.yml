@@ -14,6 +14,7 @@
         - "7000:7000"
         volumes:
         - ./cassandra:/cassandra
+        - ./cassandra/CassandraData:/var/lib/cassandra
     master:
       image: gettyimages/spark
       command: bin/spark-class org.apache.spark.deploy.master.Master -h master
@@ -92,11 +93,12 @@
         - ./spark/data:/tmp/data
     kafka:
       image: spotify/kafka
-      # command: ./opt/kafka_2.11-0.8.2.1/bin/kafka-topics.sh --create --zookeeper $ZOOKEEPER --topic test --partitions 1 --replication-factor 1
+      #command: sh /kafka/create_test_topic.sh #./opt/kafka_2.11-0.8.2.1/bin/kafka-topics.sh --create --zookeeper $ZOOKEEPER --topic test --partitions 1 --replication-factor 1
       hostname: kafka
       environment:
         - KAFKA=localhost:9092
         - ZOOKEEPER=localhost:2181
+        - KAFKA_CREATE_TOPICS="test"
       expose:
         - "2181"
         - "9092"

@@ -1,4 +1,4 @@
-#create KEYSPACE test WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
+create KEYSPACE test WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
 USE test;
 CREATE TABLE stream_test_2 (
     "_1" text

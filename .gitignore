@@ -1,1 +1,2 @@
 nifi/DestinationData/*
+cassandra/CassandraData/*
