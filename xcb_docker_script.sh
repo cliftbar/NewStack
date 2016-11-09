@@ -4,16 +4,16 @@
 #echo $1
 case $1 in
     'up' )
-        echo Setting up docker""
+        echo "Setting up docker."
         docker-compose up -d --force-recreate
         
-        # Loop to make sure any post start docker scripts run
+        # Loop to make sure kafka topics created
         for i in {1..5}
         do
             #echo $i
             var=$(docker exec -it newstack_kafka_1 bash  -c "/opt/kafka_2.11-0.8.2.1/bin/kafka-topics.sh --zookeeper \$ZOOKEEPER --list")
             #echo "var: $var"
-            if [ -n "$var" ]; then
+            if [ -z "$var" ]; then
                 echo "Test topic created"
                 break
             else
@@ -22,13 +22,23 @@ case $1 in
             fi
         done
         
+        # Loop to make sure any nifi template starts
+        for i in {1..10}
+        do
+            py_var=$(python3 nifi/start_template.py)
+            #echo "var: '$py_var'"
+            if [ -z "$py_var" ]; then
+                echo "Nifi template launched."
+                break
+            fi
+            echo "Attempt $i to launch nifi template."
+            sleep 6
+        done
+        
         # Launch web interfaces
         firefox http://0.0.0.0:8073/nifi/ http://0.0.0.0:8080/ http://0.0.0.0:8081/ http://0.0.0.0:8082/ &
         
-        #curl -iv -F template=@nifi/TsvToKafka.xml -X POST  http://0.0.0.0:8073/nifi-api/process-groups/root/templates/upload
-        #curl -iv -d '{"templateId":"6da1f04f-ee0e-4a84-adac-c28f400a8c8a", "originX": 0.0, "originY": 0.0}' -X POST -H "Content-Type: application/json"  http://0.0.0.0:8073/nifi-api/process-groups/root/template-instance
-
-        # Continue tailing the logs
+        # Continue tailing the docker-compose logs
         docker-compose logs --follow
         ;;
     'down' )
