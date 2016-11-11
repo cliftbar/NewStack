@@ -1,3 +1,4 @@
 nifi/DestinationData/*
 cassandra/CassandraData/*
+zeppelin/*
 !*.keep
