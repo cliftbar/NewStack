@@ -2,16 +2,16 @@ create KEYSPACE test WITH replication = {'class': 'SimpleStrategy', 'replication
 USE test;
 CREATE TABLE stream_test (
     catalog_number text
-    ,name text PRIMARY KEY
+    ,name text
     ,basin text
-    ,storm_timestamp timestamp
-    ,lat_y float
-    ,lon_x float
-    ,max_wind_kts float
-    ,min_cp_mb float
-    ,sequence int
-    ,fspeed_kts float
-    ,is_landfall_point int
-    ,rmax_nmi int
-    ,gwaf float
-    ,insert_timestamp timestamp);
+    ,storm_timestamp text
+    ,lat_y text
+    ,lon_x text
+    ,max_wind_kts text
+    ,min_cp_mb text
+    ,sequence text
+    ,fspeed_kts text
+    ,is_landfall_point text
+    ,rmax_nmi text
+    ,gwaf text
+    ,insert_timestamp text PRIMARY KEY);

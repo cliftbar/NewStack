@@ -1,5 +1,0 @@
-Docker:
-https://docs.docker.com/engine/installation/linux/ubuntulinux/#/create-a-docker-group
-
-Docker Compose:
-https://docs.docker.com/engine/installation/linux/ubuntulinux/

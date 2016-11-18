@@ -1,0 +1,6 @@
+backend tasks.zeppelin-be
+	mode http
+	reqrep	^([^\ :]*)\ /zeppelin/(.*)	\1\ /\2
+	reqadd	X-Script-Name:\ /zeppelin
+	option	forwardfor
+	server tasks.zeppelin tasks.zeppelin:8070

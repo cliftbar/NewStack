@@ -5,7 +5,7 @@ import sys
 
 try:
     # Load template file
-    template_name = 'TsvToKafkaWithConverts'
+    template_name = 'TsvToJson_ToKafka'
     template = {'template': open('nifi/' + template_name + '.xml', 'rb')}
 
     procs = requests.get('http://0.0.0.0:8073/nifi-api/flow/templates').json()
