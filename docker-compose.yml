@@ -6,18 +6,21 @@ services:
        - "8073:8080"
        - "8074:8081"
        volumes:
-       - ./nifi:/nifi
+        - ./nifi:/nifi
    cassandra:
        image: cassandra
        hostname: cassandra
-       ports:
-       - "7000:7000"
+       expose:
+         - 9042
+         - 7000
+       #ports:
+       #- 7000:7000
        volumes:
        - ./cassandra:/cassandra
        - ./cassandra/CassandraData:/var/lib/cassandra
    master:
      image: dylanmei/zeppelin
-     command: bash -c "/usr/spark-2.0.1/bin/spark-class org.apache.spark.deploy.master.Master -h master"
+     command: bash -c "/usr/spark-2.0.1/bin/spark-class org.apache.spark.deploy.master.Master -h master & /usr/zeppelin/bin/zeppelin.sh"
      # & /usr/zeppelin/bin/zeppelin.sh"
      # /usr/zeppelin/bin/install-interpreter.sh --name cassandra
      hostname: master
@@ -75,6 +78,7 @@ services:
    kafka:
      image: spotify/kafka
      hostname: kafka
+     #command: sh /kafka/create_test_topic.sh
      environment:
        - KAFKA=localhost:9092
        - ZOOKEEPER=localhost:2181
@@ -82,8 +86,8 @@ services:
      expose:
        - "2181"
        - "9092"
-     ports:
-       - 2181:2181
-       - 9092:9092
+     #ports:
+       #- 2181:2181
+       #- 9092:9092
      volumes:
      - ./kafka:/kafka

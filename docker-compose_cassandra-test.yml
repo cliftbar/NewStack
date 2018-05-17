@@ -1,9 +1,11 @@
-cassandra_test_client:
-       image: cassandra
-       hostname: cassandra_test_client
-       
-cassandra_test_host:
-       image: cassandra
-       hostname: cassandra_test_host
-       expose:
-       - "9042"
+version: '2'
+services:
+    cassandra_test_client:
+           image: cassandra
+           hostname: cassandra_test_client
+           
+    #cassandra_test_host:
+    #       image: cassandra
+    #       hostname: cassandra_test_host
+    #       expose:
+    #       - "9042"
